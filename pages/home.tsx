@@ -4,7 +4,7 @@ import { Footer } from "./footer";
 
 import {useRouter} from "next/router";
 
-export default function Home() {
+export default function Home()  {
     const router = useRouter();
   
     const [auth, setAuth] = useState(false);
@@ -29,22 +29,26 @@ export default function Home() {
             }
         )();
     });
-
-    if (!{auth}){
-       return router.push("/")
-        } else return (
-        <Fragment>
-           
-            
-        <Layout auth={auth}>
+    useEffect(() => {
+        if (!(auth)) {
+          router.push('/')
+        }
+      }, [auth])
+   return (<>
+           <Layout auth = {auth}>
          
     
-        <img className="image" />
-        <p>The logo above  is Made Pure CSS</p>
-     
-          
-        </Layout>
+                <img className="image" />
+                <p>The logo above  is Made Pure CSS</p>
+             
+                  
+                </Layout> 
+      
+           
+            
+       
         <Footer />
-        </Fragment>
+       
+        </>
     )
 }
